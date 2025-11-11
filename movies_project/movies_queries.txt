@@ -1,0 +1,979 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.44 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| shr                |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create database Movie;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> CREATE TABLE Movies (
+    ->     MovieID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     Title VARCHAR(100) UNIQUE NOT NULL,
+    ->     Genre VARCHAR(50),
+    ->     ReleaseYear YEAR,
+    ->     Rating DECIMAL(2,1)
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> use database Movie;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use Movie;
+Database changed
+mysql> CREATE TABLE Movies (MovieID INT AUTO_INCREMENT PRIMARY KEY, Title VARCHAR(100) UNIQUE NOT NULL, Genre VARCHAR(50), ReleaseYear YEAR, Rating DECIMAL(2,1));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('The Dark Knight','Action',2008,9.0);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Titanic','Romance',1997,8.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Blade 1','Action',1998,7.1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Fight Club','Drama',1999,8.8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Seven','Thriller',1995,8.6);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Avengers: Infinity War','Action',2018,8.5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('The Godfather','Crime',1972,9.2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Inception','Sci-Fi',2010,8.8);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Spiderman: No Way Home','Action',2021,8.3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Interstellar','Sci-Fi',2014,8.6);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Oppenheimer','Biography',2023,8.4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Pulp Fiction','Crime',1994,8.9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('The Matrix','Sci-Fi',1999,8.7);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Top Gun: Maverick','Action',2022,8.3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Man of Steel','Action',2013,7.0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Dune: Part Two','Sci-Fi',2024,8.8);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('The Batman 2022','Action',2022,8.0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Life of Pi','Adventure',2012,7.9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Sinners','Thriller',2020,7.4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Movies (Title, Genre, ReleaseYear, Rating) VALUES ('Mission Impossible: Fallout','Action',2018,7.8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from movies;
++---------+-----------------------------+-----------+-------------+--------+
+| MovieID | Title                       | Genre     | ReleaseYear | Rating |
++---------+-----------------------------+-----------+-------------+--------+
+|       1 | The Dark Knight             | Action    |        2008 |    9.0 |
+|       2 | Titanic                     | Romance   |        1997 |    8.5 |
+|       3 | Blade 1                     | Action    |        1998 |    7.1 |
+|       4 | Fight Club                  | Drama     |        1999 |    8.8 |
+|       5 | Seven                       | Thriller  |        1995 |    8.6 |
+|       6 | Avengers: Infinity War      | Action    |        2018 |    8.5 |
+|       7 | The Godfather               | Crime     |        1972 |    9.2 |
+|       8 | Inception                   | Sci-Fi    |        2010 |    8.8 |
+|       9 | Spiderman: No Way Home      | Action    |        2021 |    8.3 |
+|      10 | Interstellar                | Sci-Fi    |        2014 |    8.6 |
+|      11 | Oppenheimer                 | Biography |        2023 |    8.4 |
+|      12 | Pulp Fiction                | Crime     |        1994 |    8.9 |
+|      13 | The Matrix                  | Sci-Fi    |        1999 |    8.7 |
+|      14 | Top Gun: Maverick           | Action    |        2022 |    8.3 |
+|      15 | Man of Steel                | Action    |        2013 |    7.0 |
+|      16 | Dune: Part Two              | Sci-Fi    |        2024 |    8.8 |
+|      17 | The Batman 2022             | Action    |        2022 |    8.0 |
+|      18 | Life of Pi                  | Adventure |        2012 |    7.9 |
+|      19 | Sinners                     | Thriller  |        2020 |    7.4 |
+|      20 | Mission Impossible: Fallout | Action    |        2018 |    7.8 |
++---------+-----------------------------+-----------+-------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Actors (
+    ->     ActorID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     Name VARCHAR(100) NOT NULL,
+    ->     Gender CHAR(1),
+    ->     BirthYear YEAR,
+    ->     Nationality VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Christian Bale','M',1974,'British');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Leonardo DiCaprio','M',1974,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Kate Winslet','F',1975,'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Wesley Snipes','M',1962,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Edward Norton','M',1969,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Brad Pitt','M',1963,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Morgan Freeman','M',1937,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Robert Downey Jr.','M',1965,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Marlon Brando','M',1924,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Al Pacino','M',1940,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Tom Holland','M',1996,'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Matthew McConaughey','M',1969,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Cillian Murphy','M',1976,'Irish');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Samuel L. Jackson','M',1948,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Keanu Reeves','M',1964,'Canadian');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Tom Cruise','M',1962,'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Henry Cavill','M',1983,'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Robert Pattinson','M',1986,'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Dev Patel','M',1990,'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Actors (Name, Gender, BirthYear, Nationality) VALUES ('Zendaya','F',1996,'American');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select
+    -> *
+    -> ;'
+ERROR 1096 (HY000): No tables used
+    '> ;
+    '> ;
+    '> kok
+    '> ^C
+mysql> select * from actors;
++---------+---------------------+--------+-----------+-------------+
+| ActorID | Name                | Gender | BirthYear | Nationality |
++---------+---------------------+--------+-----------+-------------+
+|       1 | Christian Bale      | M      |      1974 | British     |
+|       2 | Leonardo DiCaprio   | M      |      1974 | American    |
+|       3 | Kate Winslet        | F      |      1975 | British     |
+|       4 | Wesley Snipes       | M      |      1962 | American    |
+|       5 | Edward Norton       | M      |      1969 | American    |
+|       6 | Brad Pitt           | M      |      1963 | American    |
+|       7 | Morgan Freeman      | M      |      1937 | American    |
+|       8 | Robert Downey Jr.   | M      |      1965 | American    |
+|       9 | Marlon Brando       | M      |      1924 | American    |
+|      10 | Al Pacino           | M      |      1940 | American    |
+|      11 | Tom Holland         | M      |      1996 | British     |
+|      12 | Matthew McConaughey | M      |      1969 | American    |
+|      13 | Cillian Murphy      | M      |      1976 | Irish       |
+|      14 | Samuel L. Jackson   | M      |      1948 | American    |
+|      15 | Keanu Reeves        | M      |      1964 | Canadian    |
+|      16 | Tom Cruise          | M      |      1962 | American    |
+|      17 | Henry Cavill        | M      |      1983 | British     |
+|      18 | Robert Pattinson    | M      |      1986 | British     |
+|      19 | Dev Patel           | M      |      1990 | British     |
+|      20 | Zendaya             | F      |      1996 | American    |
++---------+---------------------+--------+-----------+-------------+
+20 rows in set (0.00 sec)
+
+mysql> CREATE TABLE MovieActors (
+    ->     movie_actor_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     movie_id INT,
+    ->     actor_id INT,
+    ->     Role VARCHAR(100),
+    ->     FOREIGN KEY (movie_id) REFERENCES Movies(MovieID),
+    ->     FOREIGN KEY (actor_id) REFERENCES Actors(ActorID)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (1, 1, 'Bruce Wayne / Batman');           -- The Dark Knight - Christian Bale
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (2, 2, 'Jack Dawson');                   -- Titanic - Leonardo DiCaprio
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (2, 3, 'Rose DeWitt Bukater');           -- Titanic - Kate Winslet
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (3, 4, 'Blade');                         -- Blade 1 - Wesley Snipes
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (4, 5, 'Tyler Durden');                  -- Fight Club - Brad Pitt
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (5, 6, 'Detective Somerset');             -- Seven - Morgan Freeman
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (6, 7, 'Tony Stark / Iron Man');         -- Avengers Infinity War - Robert Downey Jr.
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (7, 8, 'Michael Corleone');              -- The Godfather - Al Pacino
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (8, 2, 'Dom Cobb');                      -- Inception - Leonardo DiCaprio
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (9, 9, 'Peter Parker / Spider-Man');     -- Spiderman No Way Home - Tom Holland
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (10, 10, 'Cooper');                       -- Interstellar - Matthew McConaughey
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (11, 11, 'J. Robert Oppenheimer');        -- Oppenheimer - Cillian Murphy
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (12, 12, 'Jules Winnfield');              -- Pulp Fiction - Samuel L. Jackson
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (13, 13, 'Neo');                          -- The Matrix - Keanu Reeves
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieActors (movie_id, actor_id, Role) VALUES (14, 14, 'Pete "Maverick" Mitchell');     -- Top Gun Maverick - Tom Cruise
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from movieactors;
++----------------+----------+----------+---------------------------+
+| movie_actor_id | movie_id | actor_id | Role                      |
++----------------+----------+----------+---------------------------+
+|              1 |        1 |        1 | Bruce Wayne / Batman      |
+|              2 |        2 |        2 | Jack Dawson               |
+|              3 |        2 |        3 | Rose DeWitt Bukater       |
+|              4 |        3 |        4 | Blade                     |
+|              5 |        4 |        5 | Tyler Durden              |
+|              6 |        5 |        6 | Detective Somerset        |
+|              7 |        6 |        7 | Tony Stark / Iron Man     |
+|              8 |        7 |        8 | Michael Corleone          |
+|              9 |        8 |        2 | Dom Cobb                  |
+|             10 |        9 |        9 | Peter Parker / Spider-Man |
+|             11 |       10 |       10 | Cooper                    |
+|             12 |       11 |       11 | J. Robert Oppenheimer     |
+|             13 |       12 |       12 | Jules Winnfield           |
+|             14 |       13 |       13 | Neo                       |
+|             15 |       14 |       14 | Pete "Maverick" Mitchell  |
++----------------+----------+----------+---------------------------+
+15 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Directors (
+    ->     DirectorID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     Name VARCHAR(100) NOT NULL,
+    ->     BirthYear YEAR,
+    ->     Nationality VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Christopher Nolan', 1970, 'British-American');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('James Cameron', 1954, 'Canadian');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Stephen Norrington', 1964, 'British');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('David Fincher', 1962, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('David Fincher', 1962, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Anthony Russo', 1970, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Francis Ford Coppola', 1939, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Christopher Nolan', 1970, 'British-American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Jon Watts', 1981, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Christopher Nolan', 1970, 'British-American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Christopher Nolan', 1970, 'British-American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Quentin Tarantino', 1963, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Lana Wachowski', 1965, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Joseph Kosinski', 1974, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Directors (Name, BirthYear, Nationality) VALUES ('Zack Snyder', 1966, 'American');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> CREATE TABLE MovieDirectors (
+    ->     movie_director_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     movie_id INT,
+    ->     director_id INT,
+    ->     FOREIGN KEY (movie_id) REFERENCES Movies(MovieID),
+    ->     FOREIGN KEY (director_id) REFERENCES Directors(DirectorID)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql>
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (1, 1);  -- The Dark Knight - Christopher Nolan
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (2, 2);  -- Titanic - James Cameron
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (3, 3);  -- Blade 1 - Stephen Norrington
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (4, 4);  -- Fight Club - David Fincher
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (5, 5);  -- Seven - David Fincher
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (6, 6);  -- Avengers Infinity War - Anthony Russo
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (7, 7);  -- The Godfather - Francis Ford Coppola
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (8, 8);  -- Inception - Christopher Nolan
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (9, 9);  -- Spiderman No Way Home - Jon Watts
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (10, 10); -- Interstellar - Christopher Nolan
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (11, 11); -- Oppenheimer - Christopher Nolan
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (12, 12); -- Pulp Fiction - Quentin Tarantino
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (13, 13); -- The Matrix - Lana Wachowski
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (14, 14); -- Top Gun Maverick - Joseph Kosinski
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO MovieDirectors (movie_id, director_id) VALUES (15, 15); -- Man of Steel - Zack Snyder
+Query OK, 1 row affected (0.00 sec)
+
+mysql> CREATE TABLE Reviews (
+    ->     ReviewID INT AUTO_INCREMENT PRIMARY KEY,
+    ->     MovieID INT,
+    ->     ReviewerName VARCHAR(100),
+    ->     Rating DECIMAL(2,1),
+    ->     Comment VARCHAR(255),
+    ->     ReviewDate DATE,
+    ->     FOREIGN KEY (MovieID) REFERENCES Movies(MovieID)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (1, 'Alice', 9.0, 'Amazing movie!', '2023-10-01');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (2, 'Bob', 8.5, 'Classic romance.', '2023-09-15');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (3, 'Charlie', 7.0, 'Good action scenes.', '2023-08-20');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (4, 'Diana', 8.8, 'Mind-blowing plot.', '2023-07-12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (5, 'Ethan', 8.6, 'Very intense thriller.', '2023-06-30');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (6, 'Fiona', 8.5, 'Loved the ensemble cast.', '2023-05-25');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (7, 'George', 9.2, 'Masterpiece.', '2023-04-18');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (8, 'Hannah', 8.8, 'Excellent visuals.', '2023-03-10');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (9, 'Ian', 8.3, 'Fun superhero movie.', '2023-02-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (10, 'Julia', 8.6, 'Beautiful sci-fi journey.', '2023-01-22');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (11, 'Kevin', 8.4, 'Intense and gripping.', '2022-12-30');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (12, 'Laura', 8.9, 'Classic Tarantino!', '2022-11-18');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (13, 'Michael', 8.7, 'Still revolutionary.', '2022-10-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (14, 'Nina', 8.3, 'High-flying fun.', '2022-09-12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate) VALUES (15, 'Oscar', 7.0, 'Good superhero movie.', '2022-08-20');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Movies;
++---------+-----------------------------+-----------+-------------+--------+
+| MovieID | Title                       | Genre     | ReleaseYear | Rating |
++---------+-----------------------------+-----------+-------------+--------+
+|       1 | The Dark Knight             | Action    |        2008 |    9.0 |
+|       2 | Titanic                     | Romance   |        1997 |    8.5 |
+|       3 | Blade 1                     | Action    |        1998 |    7.1 |
+|       4 | Fight Club                  | Drama     |        1999 |    8.8 |
+|       5 | Seven                       | Thriller  |        1995 |    8.6 |
+|       6 | Avengers: Infinity War      | Action    |        2018 |    8.5 |
+|       7 | The Godfather               | Crime     |        1972 |    9.2 |
+|       8 | Inception                   | Sci-Fi    |        2010 |    8.8 |
+|       9 | Spiderman: No Way Home      | Action    |        2021 |    8.3 |
+|      10 | Interstellar                | Sci-Fi    |        2014 |    8.6 |
+|      11 | Oppenheimer                 | Biography |        2023 |    8.4 |
+|      12 | Pulp Fiction                | Crime     |        1994 |    8.9 |
+|      13 | The Matrix                  | Sci-Fi    |        1999 |    8.7 |
+|      14 | Top Gun: Maverick           | Action    |        2022 |    8.3 |
+|      15 | Man of Steel                | Action    |        2013 |    7.0 |
+|      16 | Dune: Part Two              | Sci-Fi    |        2024 |    8.8 |
+|      17 | The Batman 2022             | Action    |        2022 |    8.0 |
+|      18 | Life of Pi                  | Adventure |        2012 |    7.9 |
+|      19 | Sinners                     | Thriller  |        2020 |    7.4 |
+|      20 | Mission Impossible: Fallout | Action    |        2018 |    7.8 |
++---------+-----------------------------+-----------+-------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Actors;
++---------+---------------------+--------+-----------+-------------+
+| ActorID | Name                | Gender | BirthYear | Nationality |
++---------+---------------------+--------+-----------+-------------+
+|       1 | Christian Bale      | M      |      1974 | British     |
+|       2 | Leonardo DiCaprio   | M      |      1974 | American    |
+|       3 | Kate Winslet        | F      |      1975 | British     |
+|       4 | Wesley Snipes       | M      |      1962 | American    |
+|       5 | Edward Norton       | M      |      1969 | American    |
+|       6 | Brad Pitt           | M      |      1963 | American    |
+|       7 | Morgan Freeman      | M      |      1937 | American    |
+|       8 | Robert Downey Jr.   | M      |      1965 | American    |
+|       9 | Marlon Brando       | M      |      1924 | American    |
+|      10 | Al Pacino           | M      |      1940 | American    |
+|      11 | Tom Holland         | M      |      1996 | British     |
+|      12 | Matthew McConaughey | M      |      1969 | American    |
+|      13 | Cillian Murphy      | M      |      1976 | Irish       |
+|      14 | Samuel L. Jackson   | M      |      1948 | American    |
+|      15 | Keanu Reeves        | M      |      1964 | Canadian    |
+|      16 | Tom Cruise          | M      |      1962 | American    |
+|      17 | Henry Cavill        | M      |      1983 | British     |
+|      18 | Robert Pattinson    | M      |      1986 | British     |
+|      19 | Dev Patel           | M      |      1990 | British     |
+|      20 | Zendaya             | F      |      1996 | American    |
++---------+---------------------+--------+-----------+-------------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Directors;
++------------+----------------------+-----------+------------------+
+| DirectorID | Name                 | BirthYear | Nationality      |
++------------+----------------------+-----------+------------------+
+|          1 | Christopher Nolan    |      1970 | British-American |
+|          2 | James Cameron        |      1954 | Canadian         |
+|          3 | Stephen Norrington   |      1964 | British          |
+|          4 | David Fincher        |      1962 | American         |
+|          5 | David Fincher        |      1962 | American         |
+|          6 | Anthony Russo        |      1970 | American         |
+|          7 | Francis Ford Coppola |      1939 | American         |
+|          8 | Christopher Nolan    |      1970 | British-American |
+|          9 | Jon Watts            |      1981 | American         |
+|         10 | Christopher Nolan    |      1970 | British-American |
+|         11 | Christopher Nolan    |      1970 | British-American |
+|         12 | Quentin Tarantino    |      1963 | American         |
+|         13 | Lana Wachowski       |      1965 | American         |
+|         14 | Joseph Kosinski      |      1974 | American         |
+|         15 | Zack Snyder          |      1966 | American         |
++------------+----------------------+-----------+------------------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Reviews;
++----------+---------+--------------+--------+---------------------------+------------+
+| ReviewID | MovieID | ReviewerName | Rating | Comment                   | ReviewDate |
++----------+---------+--------------+--------+---------------------------+------------+
+|        1 |       1 | Alice        |    9.0 | Amazing movie!            | 2023-10-01 |
+|        2 |       2 | Bob          |    8.5 | Classic romance.          | 2023-09-15 |
+|        3 |       3 | Charlie      |    7.0 | Good action scenes.       | 2023-08-20 |
+|        4 |       4 | Diana        |    8.8 | Mind-blowing plot.        | 2023-07-12 |
+|        5 |       5 | Ethan        |    8.6 | Very intense thriller.    | 2023-06-30 |
+|        6 |       6 | Fiona        |    8.5 | Loved the ensemble cast.  | 2023-05-25 |
+|        7 |       7 | George       |    9.2 | Masterpiece.              | 2023-04-18 |
+|        8 |       8 | Hannah       |    8.8 | Excellent visuals.        | 2023-03-10 |
+|        9 |       9 | Ian          |    8.3 | Fun superhero movie.      | 2023-02-05 |
+|       10 |      10 | Julia        |    8.6 | Beautiful sci-fi journey. | 2023-01-22 |
+|       11 |      11 | Kevin        |    8.4 | Intense and gripping.     | 2022-12-30 |
+|       12 |      12 | Laura        |    8.9 | Classic Tarantino!        | 2022-11-18 |
+|       13 |      13 | Michael      |    8.7 | Still revolutionary.      | 2022-10-05 |
+|       14 |      14 | Nina         |    8.3 | High-flying fun.          | 2022-09-12 |
+|       15 |      15 | Oscar        |    7.0 | Good superhero movie.     | 2022-08-20 |
++----------+---------+--------------+--------+---------------------------+------------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT Title, ReleaseYear FROM Movies WHERE ReleaseYear > 2015;
++-----------------------------+-------------+
+| Title                       | ReleaseYear |
++-----------------------------+-------------+
+| Avengers: Infinity War      |        2018 |
+| Spiderman: No Way Home      |        2021 |
+| Oppenheimer                 |        2023 |
+| Top Gun: Maverick           |        2022 |
+| Dune: Part Two              |        2024 |
+| The Batman 2022             |        2022 |
+| Sinners                     |        2020 |
+| Mission Impossible: Fallout |        2018 |
++-----------------------------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT Title, Rating FROM Movies WHERE Rating > 8.5;
++-----------------+--------+
+| Title           | Rating |
++-----------------+--------+
+| The Dark Knight |    9.0 |
+| Fight Club      |    8.8 |
+| Seven           |    8.6 |
+| The Godfather   |    9.2 |
+| Inception       |    8.8 |
+| Interstellar    |    8.6 |
+| Pulp Fiction    |    8.9 |
+| The Matrix      |    8.7 |
+| Dune: Part Two  |    8.8 |
++-----------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT Title, Rating FROM Movies WHERE Rating > 8.5;
++-----------------+--------+
+| Title           | Rating |
++-----------------+--------+
+| The Dark Knight |    9.0 |
+| Fight Club      |    8.8 |
+| Seven           |    8.6 |
+| The Godfather   |    9.2 |
+| Inception       |    8.8 |
+| Interstellar    |    8.6 |
+| Pulp Fiction    |    8.9 |
+| The Matrix      |    8.7 |
+| Dune: Part Two  |    8.8 |
++-----------------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT a.Name, ma.Role
+    -> FROM MovieActors ma
+    -> JOIN Movies m ON ma.MovieID = m.MovieID
+    -> JOIN Actors a ON ma.ActorID = a.ActorID
+    -> WHERE m.Title = 'Titanic';
+ERROR 1054 (42S22): Unknown column 'ma.ActorID' in 'on clause'
+mysql> SELECT a.Name, ma.Role
+    -> FROM MovieActors ma
+    -> JOIN Movies m ON ma.movie_id = m.MovieID
+    -> JOIN Actors a ON ma.actor_id = a.ActorID
+    -> WHERE m.Title = 'Titanic';
++-------------------+---------------------+
+| Name              | Role                |
++-------------------+---------------------+
+| Leonardo DiCaprio | Jack Dawson         |
+| Kate Winslet      | Rose DeWitt Bukater |
++-------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Title, Rating
+    -> FROM Movies
+    -> ORDER BY Rating DESC
+    -> LIMIT 5;
++-----------------+--------+
+| Title           | Rating |
++-----------------+--------+
+| The Godfather   |    9.2 |
+| The Dark Knight |    9.0 |
+| Pulp Fiction    |    8.9 |
+| Fight Club      |    8.8 |
+| Inception       |    8.8 |
++-----------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT a.Name, COUNT(ma.movie_id) AS MoviesCount
+    -> FROM Actors a
+    -> JOIN MovieActors ma ON a.ActorID = ma.actor_id
+    -> GROUP BY a.ActorID
+    -> ORDER BY MoviesCount DESC;
++---------------------+-------------+
+| Name                | MoviesCount |
++---------------------+-------------+
+| Leonardo DiCaprio   |           2 |
+| Christian Bale      |           1 |
+| Kate Winslet        |           1 |
+| Wesley Snipes       |           1 |
+| Edward Norton       |           1 |
+| Brad Pitt           |           1 |
+| Morgan Freeman      |           1 |
+| Robert Downey Jr.   |           1 |
+| Marlon Brando       |           1 |
+| Al Pacino           |           1 |
+| Tom Holland         |           1 |
+| Matthew McConaughey |           1 |
+| Cillian Murphy      |           1 |
+| Samuel L. Jackson   |           1 |
++---------------------+-------------+
+14 rows in set (0.01 sec)
+
+mysql> SELECT m.Title, d.Name AS Director
+    -> FROM Movies m
+    -> JOIN MovieDirectors md ON m.MovieID = md.movie_id
+    -> JOIN Directors d ON md.director_id = d.DirectorID;
++------------------------+----------------------+
+| Title                  | Director             |
++------------------------+----------------------+
+| The Dark Knight        | Christopher Nolan    |
+| Titanic                | James Cameron        |
+| Blade 1                | Stephen Norrington   |
+| Fight Club             | David Fincher        |
+| Seven                  | David Fincher        |
+| Avengers: Infinity War | Anthony Russo        |
+| The Godfather          | Francis Ford Coppola |
+| Inception              | Christopher Nolan    |
+| Spiderman: No Way Home | Jon Watts            |
+| Interstellar           | Christopher Nolan    |
+| Oppenheimer            | Christopher Nolan    |
+| Pulp Fiction           | Quentin Tarantino    |
+| The Matrix             | Lana Wachowski       |
+| Top Gun: Maverick      | Joseph Kosinski      |
+| Man of Steel           | Zack Snyder          |
++------------------------+----------------------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT r.ReviewerName, r.Rating, r.Comment, r.ReviewDate
+    -> FROM Reviews r
+    -> JOIN Movies m ON r.MovieID = m.MovieID
+    -> WHERE m.Title = 'Inception';
++--------------+--------+--------------------+------------+
+| ReviewerName | Rating | Comment            | ReviewDate |
++--------------+--------+--------------------+------------+
+| Hannah       |    8.8 | Excellent visuals. | 2023-03-10 |
++--------------+--------+--------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Genre, COUNT(*) AS MovieCount
+    -> FROM Movies
+    -> GROUP BY Genre;
++-----------+------------+
+| Genre     | MovieCount |
++-----------+------------+
+| Action    |          8 |
+| Romance   |          1 |
+| Drama     |          1 |
+| Thriller  |          2 |
+| Crime     |          2 |
+| Sci-Fi    |          4 |
+| Biography |          1 |
+| Adventure |          1 |
++-----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT m.Title, a.Name, ma.Role
+    -> FROM Movies m
+    -> JOIN MovieActors ma ON m.MovieID = ma.movie_id
+    -> JOIN Actors a ON ma.actor_id = a.ActorID
+    -> WHERE m.Genre = 'Sci-Fi';
++--------------+-------------------+----------+
+| Title        | Name              | Role     |
++--------------+-------------------+----------+
+| Inception    | Leonardo DiCaprio | Dom Cobb |
+| Interstellar | Al Pacino         | Cooper   |
+| The Matrix   | Cillian Murphy    | Neo      |
++--------------+-------------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM MOVIES;
++---------+-----------------------------+-----------+-------------+--------+
+| MovieID | Title                       | Genre     | ReleaseYear | Rating |
++---------+-----------------------------+-----------+-------------+--------+
+|       1 | The Dark Knight             | Action    |        2008 |    9.0 |
+|       2 | Titanic                     | Romance   |        1997 |    8.5 |
+|       3 | Blade 1                     | Action    |        1998 |    7.1 |
+|       4 | Fight Club                  | Drama     |        1999 |    8.8 |
+|       5 | Seven                       | Thriller  |        1995 |    8.6 |
+|       6 | Avengers: Infinity War      | Action    |        2018 |    8.5 |
+|       7 | The Godfather               | Crime     |        1972 |    9.2 |
+|       8 | Inception                   | Sci-Fi    |        2010 |    8.8 |
+|       9 | Spiderman: No Way Home      | Action    |        2021 |    8.3 |
+|      10 | Interstellar                | Sci-Fi    |        2014 |    8.6 |
+|      11 | Oppenheimer                 | Biography |        2023 |    8.4 |
+|      12 | Pulp Fiction                | Crime     |        1994 |    8.9 |
+|      13 | The Matrix                  | Sci-Fi    |        1999 |    8.7 |
+|      14 | Top Gun: Maverick           | Action    |        2022 |    8.3 |
+|      15 | Man of Steel                | Action    |        2013 |    7.0 |
+|      16 | Dune: Part Two              | Sci-Fi    |        2024 |    8.8 |
+|      17 | The Batman 2022             | Action    |        2022 |    8.0 |
+|      18 | Life of Pi                  | Adventure |        2012 |    7.9 |
+|      19 | Sinners                     | Thriller  |        2020 |    7.4 |
+|      20 | Mission Impossible: Fallout | Action    |        2018 |    7.8 |
++---------+-----------------------------+-----------+-------------+--------+
+20 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Movies ADD AvgRating DECIMAL(3,2) DEFAULT 0;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE TRIGGER UpdateAvgRating
+    -> AFTER INSERT ON Reviews
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     UPDATE Movies
+    ->     SET AvgRating = (
+    ->         SELECT ROUND(AVG(Rating), 2)
+    ->         FROM Reviews
+    ->         WHERE MovieID = NEW.MovieID
+    ->     )
+    ->     WHERE MovieID = NEW.MovieID;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> SELECT * FROM MOVIES;
++---------+-----------------------------+-----------+-------------+--------+-----------+
+| MovieID | Title                       | Genre     | ReleaseYear | Rating | AvgRating |
++---------+-----------------------------+-----------+-------------+--------+-----------+
+|       1 | The Dark Knight             | Action    |        2008 |    9.0 |      0.00 |
+|       2 | Titanic                     | Romance   |        1997 |    8.5 |      0.00 |
+|       3 | Blade 1                     | Action    |        1998 |    7.1 |      0.00 |
+|       4 | Fight Club                  | Drama     |        1999 |    8.8 |      0.00 |
+|       5 | Seven                       | Thriller  |        1995 |    8.6 |      0.00 |
+|       6 | Avengers: Infinity War      | Action    |        2018 |    8.5 |      0.00 |
+|       7 | The Godfather               | Crime     |        1972 |    9.2 |      0.00 |
+|       8 | Inception                   | Sci-Fi    |        2010 |    8.8 |      0.00 |
+|       9 | Spiderman: No Way Home      | Action    |        2021 |    8.3 |      0.00 |
+|      10 | Interstellar                | Sci-Fi    |        2014 |    8.6 |      0.00 |
+|      11 | Oppenheimer                 | Biography |        2023 |    8.4 |      0.00 |
+|      12 | Pulp Fiction                | Crime     |        1994 |    8.9 |      0.00 |
+|      13 | The Matrix                  | Sci-Fi    |        1999 |    8.7 |      0.00 |
+|      14 | Top Gun: Maverick           | Action    |        2022 |    8.3 |      0.00 |
+|      15 | Man of Steel                | Action    |        2013 |    7.0 |      0.00 |
+|      16 | Dune: Part Two              | Sci-Fi    |        2024 |    8.8 |      0.00 |
+|      17 | The Batman 2022             | Action    |        2022 |    8.0 |      0.00 |
+|      18 | Life of Pi                  | Adventure |        2012 |    7.9 |      0.00 |
+|      19 | Sinners                     | Thriller  |        2020 |    7.4 |      0.00 |
+|      20 | Mission Impossible: Fallout | Action    |        2018 |    7.8 |      0.00 |
++---------+-----------------------------+-----------+-------------+--------+-----------+
+20 rows in set (0.00 sec)
+
+mysql> INSERT INTO Reviews (MovieID, ReviewerName, Rating, Comment, ReviewDate)
+    -> VALUES (1, 'TestUser', 9.5, 'Amazing!', '2025-11-07');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> SELECT Title, AvgRating FROM Movies WHERE MovieID = 1;
++-----------------+-----------+
+| Title           | AvgRating |
++-----------------+-----------+
+| The Dark Knight |      9.25 |
++-----------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM MOVIES;
++---------+-----------------------------+-----------+-------------+--------+-----------+
+| MovieID | Title                       | Genre     | ReleaseYear | Rating | AvgRating |
++---------+-----------------------------+-----------+-------------+--------+-----------+
+|       1 | The Dark Knight             | Action    |        2008 |    9.0 |      9.25 |
+|       2 | Titanic                     | Romance   |        1997 |    8.5 |      0.00 |
+|       3 | Blade 1                     | Action    |        1998 |    7.1 |      0.00 |
+|       4 | Fight Club                  | Drama     |        1999 |    8.8 |      0.00 |
+|       5 | Seven                       | Thriller  |        1995 |    8.6 |      0.00 |
+|       6 | Avengers: Infinity War      | Action    |        2018 |    8.5 |      0.00 |
+|       7 | The Godfather               | Crime     |        1972 |    9.2 |      0.00 |
+|       8 | Inception                   | Sci-Fi    |        2010 |    8.8 |      0.00 |
+|       9 | Spiderman: No Way Home      | Action    |        2021 |    8.3 |      0.00 |
+|      10 | Interstellar                | Sci-Fi    |        2014 |    8.6 |      0.00 |
+|      11 | Oppenheimer                 | Biography |        2023 |    8.4 |      0.00 |
+|      12 | Pulp Fiction                | Crime     |        1994 |    8.9 |      0.00 |
+|      13 | The Matrix                  | Sci-Fi    |        1999 |    8.7 |      0.00 |
+|      14 | Top Gun: Maverick           | Action    |        2022 |    8.3 |      0.00 |
+|      15 | Man of Steel                | Action    |        2013 |    7.0 |      0.00 |
+|      16 | Dune: Part Two              | Sci-Fi    |        2024 |    8.8 |      0.00 |
+|      17 | The Batman 2022             | Action    |        2022 |    8.0 |      0.00 |
+|      18 | Life of Pi                  | Adventure |        2012 |    7.9 |      0.00 |
+|      19 | Sinners                     | Thriller  |        2020 |    7.4 |      0.00 |
+|      20 | Mission Impossible: Fallout | Action    |        2018 |    7.8 |      0.00 |
++---------+-----------------------------+-----------+-------------+--------+-----------+
+20 rows in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE GetMoviesByDirector(IN director_name VARCHAR(100))
+    -> BEGIN
+    ->     SELECT m.Title, m.ReleaseYear, m.Genre, m.AvgRating
+    ->     FROM Movies m
+    ->     JOIN MovieDirectors md ON m.MovieID = md.movie_id
+    ->     JOIN Directors d ON md.director_id = d.DirectorID
+    ->     WHERE d.Name = director_name
+    ->     ORDER BY m.ReleaseYear;
+    -> END$$
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> CALL GetMoviesByDirector('Christopher Nolan');
++-----------------+-------------+-----------+-----------+
+| Title           | ReleaseYear | Genre     | AvgRating |
++-----------------+-------------+-----------+-----------+
+| The Dark Knight |        2008 | Action    |      9.25 |
+| Inception       |        2010 | Sci-Fi    |      0.00 |
+| Interstellar    |        2014 | Sci-Fi    |      0.00 |
+| Oppenheimer     |        2023 | Biography |      0.00 |
++-----------------+-------------+-----------+-----------+
+4 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> CREATE VIEW MovieSummary AS
+    -> SELECT
+    ->     m.Title AS MovieTitle,
+    ->     d.Name AS Director,
+    ->     m.Genre,
+    ->     m.ReleaseYear,
+    ->     m.AvgRating
+    -> FROM Movies m
+    -> JOIN MovieDirectors md ON m.MovieID = md.movie_id
+    -> JOIN Directors d ON md.director_id = d.DirectorID;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM MovieSummary;
++------------------------+----------------------+-----------+-------------+-----------+
+| MovieTitle             | Director             | Genre     | ReleaseYear | AvgRating |
++------------------------+----------------------+-----------+-------------+-----------+
+| The Dark Knight        | Christopher Nolan    | Action    |        2008 |      9.25 |
+| Titanic                | James Cameron        | Romance   |        1997 |      0.00 |
+| Blade 1                | Stephen Norrington   | Action    |        1998 |      0.00 |
+| Fight Club             | David Fincher        | Drama     |        1999 |      0.00 |
+| Seven                  | David Fincher        | Thriller  |        1995 |      0.00 |
+| Avengers: Infinity War | Anthony Russo        | Action    |        2018 |      0.00 |
+| The Godfather          | Francis Ford Coppola | Crime     |        1972 |      0.00 |
+| Inception              | Christopher Nolan    | Sci-Fi    |        2010 |      0.00 |
+| Spiderman: No Way Home | Jon Watts            | Action    |        2021 |      0.00 |
+| Interstellar           | Christopher Nolan    | Sci-Fi    |        2014 |      0.00 |
+| Oppenheimer            | Christopher Nolan    | Biography |        2023 |      0.00 |
+| Pulp Fiction           | Quentin Tarantino    | Crime     |        1994 |      0.00 |
+| The Matrix             | Lana Wachowski       | Sci-Fi    |        1999 |      0.00 |
+| Top Gun: Maverick      | Joseph Kosinski      | Action    |        2022 |      0.00 |
+| Man of Steel           | Zack Snyder          | Action    |        2013 |      0.00 |
++------------------------+----------------------+-----------+-------------+-----------+
+15 rows in set (0.00 sec)
+
+mysql> WITH RankedMovies AS (
+    ->     SELECT
+    ->         Title,
+    ->         Genre,
+    ->         Rating,
+    ->         ROW_NUMBER() OVER (PARTITION BY Genre ORDER BY Rating DESC) AS RankInGenre
+    ->     FROM Movies
+    -> )
+    -> SELECT Title, Genre, Rating
+    -> FROM RankedMovies
+    -> WHERE RankInGenre <= 3
+    -> ORDER BY Genre, Rating DESC;
++------------------------+-----------+--------+
+| Title                  | Genre     | Rating |
++------------------------+-----------+--------+
+| The Dark Knight        | Action    |    9.0 |
+| Avengers: Infinity War | Action    |    8.5 |
+| Spiderman: No Way Home | Action    |    8.3 |
+| Life of Pi             | Adventure |    7.9 |
+| Oppenheimer            | Biography |    8.4 |
+| The Godfather          | Crime     |    9.2 |
+| Pulp Fiction           | Crime     |    8.9 |
+| Fight Club             | Drama     |    8.8 |
+| Titanic                | Romance   |    8.5 |
+| Inception              | Sci-Fi    |    8.8 |
+| Dune: Part Two         | Sci-Fi    |    8.8 |
+| The Matrix             | Sci-Fi    |    8.7 |
+| Seven                  | Thriller  |    8.6 |
+| Sinners                | Thriller  |    7.4 |
++------------------------+-----------+--------+
+14 rows in set (0.01 sec)
+
+mysql> SELECT *
+    -> INTO OUTFILE 'C:/mysql_exports/Movies.csv'
+    -> FIELDS TERMINATED BY ','
+    -> ENCLOSED BY '"'
+    -> LINES TERMINATED BY '\n'
+    -> FROM Movies;
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+mysql> SHOW VARIABLES LIKE 'secure_file_priv';
++------------------+------------------------------------------------+
+| Variable_name    | Value                                          |
++------------------+------------------------------------------------+
+| secure_file_priv | C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\ |
++------------------+------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT *
+    -> INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Movies.csv'
+    -> FIELDS TERMINATED BY ','
+    -> ENCLOSED BY '"'
+    -> LINES TERMINATED BY '\n'
+    -> FROM Movies;
+Query OK, 20 rows affected (0.00 sec)

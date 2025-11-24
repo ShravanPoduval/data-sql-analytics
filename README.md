@@ -1,16 +1,21 @@
-🗄️ SQL Projects
+# 🗄️ SQL Projects
 
-I have worked on a few SQL projects to practice database management and queries.  
-These projects include working with tables, joins, triggers, stored procedures, and views.
-
----
-
-⚡ Skills Used
-- SQL Queries (SELECT, JOIN, GROUP BY, etc.)  
-- Database Design  
-- Triggers and Stored Procedures  
-- Views and Aggregations  
+This repository contains my SQL practice and analytics projects.  
+It includes data cleaning, transformations, joins, aggregations, and real-world query exercises.  
+Some projects may also include simple Power BI dashboards based on SQL outputs.
 
 ---
 
-📂 This repo contains my practice projects to strengthen SQL knowledge and database handling.
+## 📁 Project Highlights
+- Employee Attendance Analysis (SQL + Power BI)
+- Movie Database Analysis (SQL Only)
+- More projects will be added over time
+
+---
+
+## ⚡ Skills Used
+- SQL Queries & Joins  
+- Data Cleaning & Aggregation  
+- Views, Procedures, Triggers (Practice)  
+- Basic Power BI
+
